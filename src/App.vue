@@ -1,28 +1,118 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+
+    <Nav />
+
+    <div class="auth-wrapper">
+      <div class="auth-inner">
+        <router-view />
+      </div>
+    </div>
+    <div class="auth-footer">
+      <div class="auth-innerfooter">
+        <Footer />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  import Nav from './components/Nav.vue'
+  import Footer from './components/Footer.vue'
+
+
+  export default {
+    name: 'App',
+    components: {
+      Nav,
+      Footer
+    }
+    
   }
-}
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+    @import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800');
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #1C8EF9 !important;
+      min-height: 100vh;
+      display: flex;
+      font-weight: 400;
+      font-family: 'Fira Sans', sans-serif;
+    }
+
+    h1, h2, h3, h4, h5, h6, label, span {
+      font-weight: 500;
+      font-family: 'Fira Sans', sans-serif;
+    }
+
+    body, html, #app, #root, .auth-wrapper {
+      width: 100%;
+      height: 100%;
+    }
+
+    #app {
+      text-align: center;
+    }
+
+    .navbar-light {
+      background-color: #FFFFFF;
+      box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+    }
+
+    .auth-wrapper, .auth-footer {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    .auth-inner {
+      width: 75%;
+      height: auto;
+      margin: auto;
+      background: #FFFFFF;
+      box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+      padding: 40px 55px 45px 55px;
+      border-radius: 15px;
+      transition: all .3s;
+    }
+
+    .auth-footer {
+      width: 100%;
+      height: auto;
+    }
+
+    .auth-innerfooter {
+      width: 100%;
+      height: auto;
+      margin: auto;
+      background: darkslategray;
+      box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+      padding: 40px 55px ;
+      transition: all .3s;
+    }
+
+    .auth-wrapper .form-control:focus ,.auth-footer {
+      border-color: #167bff;
+      box-shadow: none;
+    }
+
+    .auth-wrapper h3  {
+      text-align: center;
+      margin: 0;
+      line-height: 1;
+      padding-bottom: 20px;
+    }
+
+    .custom-control-label {
+      font-weight: 400;
+    }
+
 </style>
