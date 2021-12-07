@@ -1,34 +1,42 @@
 <template>
-    <div class="container" style="color:white;">
-            <div class="row">
-                <div class="col-sm-6 col-md-3 item">
-                    <h3>Anggota</h3>
-                    <ul>
-                        <li><a href="#">Ravelino</a></li>
-                        <li><a href="#">Brian</a></li>
-                        <li><a href="#">Donny</a></li>
-                    </ul>
-                </div>
-                <div class="col-sm-6 col-md-3 item">
-                    <h3>NPM</h3>
-                    <ul>
-                        <li><a href="#">190710062</a></li>
-                        <li><a href="#">190710208</a></li>
-                        <li><a href="#">190710358</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-6 item text">
-                    <h3>Kelompok A</h3>
-                    <p>Kelompok A merupakan kelompok yang dibentuk untuk membuat website perpustakaan</p>
-                </div>
-                <div class="col item social"></div>
-            </div>
-            <p class="copyright" style="text-align: center;">&nbsp;Kelompok A © 2021</p>
-        </div>
+    <v-footer
+    color="primary lighten-1"
+    padless
+  >
+    <v-row
+      justify="center"
+      no-gutters
+    >
+      <v-btn
+        v-for="link in links"
+        :key="link"
+        color="white"
+        text
+        rounded
+        class="my-2"
+        router :to="link.route"
+      >
+        {{ link.text }}
+      </v-btn>
+      <v-col
+        class="primary lighten-2 py-4 text-center white--text"
+        cols="12"
+      >
+      <strong>&nbsp;Kelompok A © </strong> {{ new Date().getFullYear() }}  
+      </v-col>
+    </v-row>
+  </v-footer>
 </template>
 
 <script>
     export default {
-        name: 'Footer'
+        name: 'Footer',
+         data: () => ({
+            links: [
+                {text:'Home', route: '/'},
+                {text:'About Us', route: '/about'},
+                {text:'Team', route: '/team'},
+            ],
+        }),
     }
 </script>

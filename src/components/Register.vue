@@ -1,32 +1,63 @@
 <template>
-    <div class="bg bg-light text-dark">`
-                <div class="card-header fw-bold">Register</div>
-                <div class="card-body">
-                    <form class="needs-validation"  @submit.prevent="handleSubmit">
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Nama</label>
-                            <input class="form-control"  placeholder="Nama Anda" required v-model="nama">
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" placeholder="Alamat Email" required v-model="email">
-                        </div>
-                        <div class="mb-3">
-                            <label for="username" class="form-label">Username</label>
-                            <input class="form-control" placeholder="Username" required v-model="username">
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" placeholder="Kata Sandi" required v-model="password">
-                        </div>
-                        <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-primary" name="register">Register</button>
-                        </div>
-                    </form>
-                    <p class="mt-2 mb-0">Sudah punya akun ? <a href="./loginPage.php" class="text-primary">Login
-                            Disini!</a></p>
-                </div>
-            </div>
+    <div>
+    <v-app id="inspire">
+            <v-main>
+                    <v-toolbar
+                    color="primary"
+                    dark>
+                    <v-toolbar-title>Register Form</v-toolbar-title>
+                    <v-spacer />
+                    </v-toolbar>
+                    <v-card-text>
+                        <v-form @submit.prevent="handleSubmit">
+                            <v-text-field
+                            v-model="registration.nama"
+                            label="Nama"
+                            name="nama"
+                            prepend-icon="mdi-account"
+                            type="text"
+                            :rules="namaRules" required>
+                            </v-text-field>
+
+                            <v-text-field
+                            v-model="registration.email"
+                            label="Email"
+                            name="email"
+                            prepend-icon="mdi-email"
+                            type="email"
+                            :rules="emailRules" required>
+                            </v-text-field>
+                            
+                            <v-text-field
+                            v-model="registration.username"
+                            label="Username"
+                            name="username"
+                            prepend-icon="mdi-account"
+                            type="text"
+                            :rules="usernameRules" required>
+                            </v-text-field>
+
+                            <v-text-field
+                            v-model="registration.password"
+                            label="Password"
+                            name="password"
+                            prepend-icon="mdi-lock"
+                            type="password"
+                            min="8"
+                            :rules="passwordRules" required>
+                            </v-text-field>
+
+                            <v-card-actions>
+                                <p>Sudah punya akun ? <router-link :to="{name: 'Login'}">Login</router-link></p>
+                                <v-spacer />
+                                <v-btn class="mr-2" @click="submit" :class=" { 'grey draken-1 white--text' : valid,disabled: !valid } ">Register</v-btn>
+                            </v-card-actions>
+                        </v-form>
+                        <v-snackbar v-model="snackbar" :color="color" timeout="2000" bottom>{{ error_message }}</v-snackbar>
+                    </v-card-text>
+            </v-main>
+    </v-app>
+    </div>
 </template>
 
 <script>
@@ -35,13 +66,36 @@
         name: 'Register',
         data(){
             return {
-                nama: '',
-                email: '',
-                username: '',
-                password: ''
+                load: false,
+                snackbar: false,
+                error_message: '',
+                color: '',
+                valid: false,
+                 emailRules: [
+                    (v) => !!v || 'E-mail tidak boleh kosong !',
+                ],
+                namaRules: [
+                    (v) => !!v || 'Nama tidak boleh kosong !',
+                ],
+                passwordRules: [
+                    (v) => !!v || 'Password tidak boleh kosong !',
+                ],
+                usernameRules: [
+                    (v) => !!v || 'Username tidak boleh kosong !',
+                ],
+                registration: {
+                    nama: '',
+                    email: '',
+                    username: '',
+                    password: '',
+                }
             }
         },
         methods: {
+
+            submit() {
+                
+            },
             handleSubmit(){
                 const data = {
                     nama: this.nama,

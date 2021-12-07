@@ -1,19 +1,17 @@
 <template>
-  <div id="app">
-
-    <Nav />
-
-    <div class="auth-wrapper">
-      <div class="auth-inner">
-        <router-view />
-      </div>
-    </div>
-    <div class="auth-footer">
-      <div class="auth-innerfooter">
-        <Footer />
-      </div>
-    </div>
-  </div>
+  <v-app>
+  <v-app-bar app><Nav /></v-app-bar>
+  <v-divider></v-divider>
+  <v-main class="auth-wrapper">
+    <v-container class="auth-inner">
+      <router-view />
+    </v-container>
+  </v-main>
+  <v-spacer/>
+  <v-content absolute>
+    <Footer />
+  </v-content>
+</v-app>
 </template>
 
 <script>
@@ -35,11 +33,13 @@
 <style>
     @import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800');
 
-    * {
-      box-sizing: border-box;
+    .auth-footer, #app, #root {
+      width: 100%;
+      height: 100%;
     }
 
-    body {
+    #app {
+      box-sizing: border-box;
       background: #1C8EF9 !important;
       min-height: 100vh;
       display: flex;
@@ -47,34 +47,15 @@
       font-family: 'Fira Sans', sans-serif;
     }
 
-    h1, h2, h3, h4, h5, h6, label, span {
-      font-weight: 500;
-      font-family: 'Fira Sans', sans-serif;
-    }
-
-    body, html, #app, #root, .auth-wrapper {
-      width: 100%;
-      height: 100%;
-    }
-
-    #app {
-      text-align: center;
-    }
-
-    .navbar-light {
-      background-color: #FFFFFF;
-      box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
-    }
-
     .auth-wrapper, .auth-footer {
+      margin-top: 40px;
       display: flex;
       justify-content: center;
       flex-direction: column;
-      text-align: left;
     }
 
     .auth-inner {
-      width: 75%;
+      width: auto;
       height: auto;
       margin: auto;
       background: #FFFFFF;
@@ -99,20 +80,6 @@
       transition: all .3s;
     }
 
-    .auth-wrapper .form-control:focus ,.auth-footer {
-      border-color: #167bff;
-      box-shadow: none;
-    }
-
-    .auth-wrapper h3  {
-      text-align: center;
-      margin: 0;
-      line-height: 1;
-      padding-bottom: 20px;
-    }
-
-    .custom-control-label {
-      font-weight: 400;
-    }
+  
 
 </style>

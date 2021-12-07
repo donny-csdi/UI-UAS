@@ -1,23 +1,30 @@
 <template>
-    <nav class="navbar navbar-expand navbar-light">
-        <div class="container">
-            <router-link to="/" class="navbar-brand">E-LIB</router-link>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <router-link to="/login" class="nav-link">Login</router-link>
-                    </li>
-                    <li class="nav-item">
-                        <router-link to="/register" class="nav-link">Sign Up</router-link>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+        <v-toolbar flat app>
+           <v-tabs right>
+            <v-tab
+            v-for="link in links"
+            :key="link"
+            class="mx-4"
+            color="white"
+            router :to="link.route"> {{link.text}}</v-tab>
+            
+    </v-tabs> 
+        </v-toolbar>
 </template>
+
+<style>
+
+</style>
 
 <script>
     export default {
-        name: 'Nav'
+        name: 'Nav',
+        data: () => ({
+            links: [
+                {text: "E-LIB", route: "/"},
+                {text: "Login", route: "/login"},
+                {text: "Register", route: "/register"},
+            ],
+        }),
     }
 </script>
